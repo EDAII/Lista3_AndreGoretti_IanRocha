@@ -2,6 +2,20 @@ import csv
 import random
 import math
 
+def contatos_reader():
+    with open('contatos.csv', 'r') as csv_file:
+        return list(csv.reader(csv_file))
+        
+        #for line in contatosCSV:
+           # print(line[2])
+        
+def contatos_writer(contatos):
+    with open('contatos2.csv', 'w') as new_file:
+        csv_writer = csv.writer(new_file, delimiter=',') 
+
+        for line in contatos:
+            csv_writer.writerow(line)      
+
 def nomes_reader():
     with open('nomes.csv') as csvfile:
         nomesCSV = csv.reader(csvfile, delimiter=',')
@@ -50,6 +64,9 @@ age = []
 tel = []
 city = []
 year = []
+contatosCSV = contatos_reader()
+
+
 
 for k in range(51):
     person.append(nomes_reader())

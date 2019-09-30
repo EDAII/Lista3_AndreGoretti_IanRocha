@@ -161,8 +161,8 @@ def abrirBusca():
    
    btnCity.place(x = 140, y = 70)
 
-   btnClose = ttk.Button(janelaBusca, text="Fechar", command=janelaBusca.destroy)
-   btnClose.place(x = 100, y = 500)     
+   btnClose2 = ttk.Button(janelaBusca, text="Fechar", command=janelaBusca.destroy)
+   btnClose2.place(x = 100, y = 500)     
 
 
 
@@ -173,32 +173,32 @@ def openList():
 
    
    j = 0
-   while(j <= 50):
+   for line in contatosCSV:
 
       ContatoPrin.insert(INSERT, "--------------------") 
       ContatoPrin.insert(INSERT, "\n ")      
       ContatoPrin.insert(INSERT, "Nome: ")
-      ContatoPrin.insert(INSERT, person[j])
+      ContatoPrin.insert(INSERT, line[0])
       ContatoPrin.insert(INSERT, "\n ")
 
       ContatoPrin.insert(INSERT, "CPF: ")
-      ContatoPrin.insert(INSERT, cpf[j])
+      ContatoPrin.insert(INSERT, line[2])
       ContatoPrin.insert(INSERT, "\n ")
 
-      ContatoPrin.insert(INSERT, "idade: ")
-      ContatoPrin.insert(INSERT, age[j])
-      ContatoPrin.insert(INSERT, "\n ") 
+      #ContatoPrin.insert(INSERT, "idade: ")
+      #ContatoPrin.insert(INSERT, age[j])
+      #ContatoPrin.insert(INSERT, "\n ") 
 
       ContatoPrin.insert(INSERT, "Cidade: ")
-      ContatoPrin.insert(INSERT, city[j])
+      ContatoPrin.insert(INSERT, line[1])
       ContatoPrin.insert(INSERT, "\n ") 
 
       ContatoPrin.insert(INSERT, "Numero Telefone: ")
-      ContatoPrin.insert(INSERT, tel[j])
+      ContatoPrin.insert(INSERT, line[4])
       ContatoPrin.insert(INSERT, "\n ") 
 
       ContatoPrin.insert(INSERT, "Nascimento: ")
-      ContatoPrin.insert(INSERT, date[j])
+      ContatoPrin.insert(INSERT, line[3])
       ContatoPrin.insert(INSERT, "\n")
       j += 1
 
@@ -328,8 +328,11 @@ def clickedCidade():
    
    
 
-   
+def fechar():
+   contatos_writer(contatosCSV)
+   window1.destroy()
 
+ 
 window1 = Tk() 
 
 window1.title("Agenda")
@@ -357,6 +360,9 @@ btnOrdenaNome.place(relx = 0.25, rely = 0.6, anchor = CENTER)
 
 btnOrdenacidade = ttk.Button(window1, text="Ordenar por Cidade", command=clickedCidade)      
 btnOrdenacidade.place(relx = 0.25, rely = 0.7, anchor = CENTER)
+
+btnClose = ttk.Button(window1, text="Fechar", command=fechar)
+btnClose.place(x = 70, y = 500)
 
  
 window1.mainloop()
