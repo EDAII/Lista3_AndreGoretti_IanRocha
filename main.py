@@ -207,7 +207,7 @@ def openList():
 
 def clickedIdade():
 
-   shellSort()
+   bucketSort()
 
    ContatoPrin.config(state="normal")
    ContatoPrin.delete('1.0', END)

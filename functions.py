@@ -1,5 +1,6 @@
 import csv
 import random
+import math
 
 def nomes_reader():
     with open('nomes.csv') as csvfile:
@@ -61,54 +62,61 @@ for k in range(51):
 
 #Ordering by age
 def bucketSort():
-    arr = []
-    slot_size = 10
+    code = hashing()
+    buckets = [list() for _ in range(code[1])]
+
+    for i in age:
+        x = re_hashing(i, code)
+        buck = buckets[x]
+        buck.append(i)
+
+    for bucket in buckets:
+        insertion_sort(bucket)
+
+    ndx = 0
+    for b in range(len(buckets)):
+        for v in buckets[b]:
+            age[ndx] = v
+            ndx += 1
+
+def hashing():
+    m = age[0]
+    for i in range(1, len(age)):
+        if(m < age[i]):
+            m = age[i]
+    result = [m, int(math.sqrt(len(age)))]
     
-    for i in range(slot_size):
-        arr.append([])
+    return result
 
-    for j in age:
-        index_b = int(slot_size * j)
-        arr[index_b].append(j)
+def re_hashing(i, code):
+    return int(i / code[0] * (code[1] - 1))
 
-    for i in range(slot_size):
-        arr[i] = insertion_sort(arr[i])
-
-    k = 0
-    for i in range(slot_size):
-        for j in range(len(arr[i])):
-            age[k] = arr[i][j]
-            k += 1
     
-def insertion_sort():
-    for i in range (len(city)):
-        if i > 0:
-            j = i
-            while j != 0 and (city[j] < city[j-1]):
-                aux = city[j]
-                city[j] = city[j - 1]
-                city[j - 1] = aux
-                #
-                aux = person[j]
-                person[j] = person[j - 1]
-                person[j - 1] = aux
-                #
-                aux = age[j]
-                age[j] = age[j - 1]
-                age[j - 1] = aux
-                #
-                aux = tel[j]
-                tel[j] = tel[j - 1]
-                tel[j - 1] = aux
-                #
-                aux = date[j]
-                date[j] = date[j - 1]
-                date[j - 1] = aux
-                #
-                aux = cpf[j]
-                cpf[j] = cpf[j - 1]
-                cpf[j - 1] = aux
-                j -= 1
+def insertion_sort(b):
+    for i in range (1, len(b)):
+        upAge = b[i]
+        upPerson = person[i]
+        upCity = city[i]
+        upDate = date[i]
+        upCpf = cpf[i]
+        upTel = tel[i]
+        j = i - 1
+
+        while j >= 0 and b[j] > upAge:
+            b[j + 1] = b[j]
+            person[j + 1] = person[j]
+            date[j + 1] = date[j]
+            cpf[j + 1] = cpf[j]
+            tel[j + 1] = tel[j]
+            city[j + 1] = city[j]
+            j -= 1
+
+        b[j + 1] = upAge
+        person[j + 1] = upPerson
+        date[j + 1] = upDate
+        cpf[j + 1] = upCpf
+        tel[j + 1] = upTel
+        city[j + 1] = upCity
 
         
 #Ordering by Name
