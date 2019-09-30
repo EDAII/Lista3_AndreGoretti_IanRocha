@@ -60,70 +60,26 @@ for k in range(51):
     city.append(random_city())
 
 #Ordering by age
-def shellSort():
-    n = len(age)
-    gap = n / 2
-    while int(gap) > 0:
-        for i in range(int(gap),n):
-            tempAge = age[i]
-            tempPerson = person[i]
-            tempCity = city[i]
-            tempDate = date[i]
-            tempCpf = cpf[i]
-            tempTel = tel[i]
+def bucketSort():
+    arr = []
+    slot_size = 10
+    
+    for i in range(slot_size):
+        arr.append([])
 
-            j = i
-            while j >= int(gap) and age[j - int(gap)] > tempAge:
-                age[j] = age[j - int(gap)]
-                person[j] = person[j - int(gap)]
-                city[j] = city[j - int(gap)]
-                date[j] = date[j - int(gap)]
-                cpf[j] = cpf[j - int(gap)]
-                tel[j] = tel[j - int(gap)]
-                j -= int(gap)
+    for j in age:
+        index_b = int(slot_size * j)
+        arr[index_b].append(j)
 
-            age[j] = tempAge
-            person[j] = tempPerson
-            city[j] = tempCity
-            date[j] = tempDate
-            cpf[j] = tempCpf
-            tel[j] = tempTel
-        gap /= 2
+    for i in range(slot_size):
+        arr[i] = insertion_sort(arr[i])
 
-        
-#Ordering by Name
-def bubble_sort():
-    unsorted = True
-    while unsorted:
-        unsorted = False
-        for i in range(len(person)-1):
-            if person[i] > person[i+1]:
-                aux = person[i+1]
-                person[i+1] = person[i]
-                person[i] = aux
-                #
-                aux = age[i+1]
-                age[i+1] = age[i]
-                age[i] = aux
-                #
-                aux = city[i+1]
-                city[i+1] = city[i]
-                city[i] = aux
-                #
-                aux = tel[i+1]
-                tel[i+1] = tel[i]
-                tel[i] = aux
-                #
-                aux = cpf[i+1]
-                cpf[i+1] = cpf[i]
-                cpf[i] = aux
-                #
-                aux = date[i+1]
-                date[i+1] = date[i]
-                date[i] = aux
-                unsorted = True
-
-#Ordering by City
+    k = 0
+    for i in range(slot_size):
+        for j in range(len(arr[i])):
+            age[k] = arr[i][j]
+            k += 1
+    
 def insertion_sort():
     for i in range (len(city)):
         if i > 0:
@@ -153,3 +109,66 @@ def insertion_sort():
                 cpf[j] = cpf[j - 1]
                 cpf[j - 1] = aux
                 j -= 1
+
+        
+#Ordering by Name
+def shellSort():
+    n = len(person)
+    gap = n / 2
+    while int(gap) > 0:
+        for i in range(int(gap),n):
+            tempAge = age[i]
+            tempPerson = person[i]
+            tempCity = city[i]
+            tempDate = date[i]
+            tempCpf = cpf[i]
+            tempTel = tel[i]
+
+            j = i
+            while j >= int(gap) and person[j - int(gap)] > tempPerson:
+                age[j] = age[j - int(gap)]
+                person[j] = person[j - int(gap)]
+                city[j] = city[j - int(gap)]
+                date[j] = date[j - int(gap)]
+                cpf[j] = cpf[j - int(gap)]
+                tel[j] = tel[j - int(gap)]
+                j -= int(gap)
+
+            age[j] = tempAge
+            person[j] = tempPerson
+            city[j] = tempCity
+            date[j] = tempDate
+            cpf[j] = tempCpf
+            tel[j] = tempTel
+        gap /= 2
+
+
+#Ordering by City
+def quickSort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+        quickSort(arr, low, pi-1) 
+        quickSort(arr, pi+1, high) 
+
+def partition(arr, low, high):
+    i = low - 1
+    pivo = city[high]
+
+    for j in range(low, high):
+        if city[j] <= pivo:
+            i += 1
+            city[i], city[j] = city[j], city[i]
+            age[i], age[j] = age[j], age[i]
+            person[i], person[j] = person[j], person[i]
+            date[i], date[j] = date[j], date[i]
+            cpf[i], cpf[j] = cpf[j], cpf[i]
+            tel[i], tel[j] = tel[j], tel[i]
+    
+    city[i+1], city[high] = city[high], city[i+1]
+    age[i+1], age[high] = age[high], age[i+1]
+    person[i+1], person[high] = person[high], person[i+1]
+    date[i+1], date[high] = date[high], date[i+1]
+    cpf[i+1], cpf[high] = cpf[high], cpf[i+1]
+    tel[i+1], tel[high] = tel[high], tel[i+1]
+    
+    return (i+1)

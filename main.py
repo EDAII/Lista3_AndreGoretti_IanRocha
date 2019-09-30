@@ -247,7 +247,7 @@ def clickedIdade():
 
 def clickedNome():
 
-   bubble_sort()
+   shellSort()
 
    ContatoPrin.config(state="normal")
    ContatoPrin.delete('1.0', END)
@@ -287,7 +287,8 @@ def clickedNome():
 
 def clickedCidade():
 
-   insertion_sort()
+   n = len(city)
+   quickSort(city, 0, n-1)
 
    ContatoPrin.config(state="normal")
    ContatoPrin.delete('1.0', END)
