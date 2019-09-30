@@ -60,36 +60,36 @@ for k in range(51):
     city.append(random_city())
 
 #Ordering by age
-def selection_sort():
-    for i in range(len(age)):
-        minimum = i
-        for index in range(i+1, len(age)):
-            if age[minimum] > age[index]:
-                minimum = index
+def shellSort():
+    n = len(age)
+    gap = n / 2
+    while int(gap) > 0:
+        for i in range(int(gap),n):
+            tempAge = age[i]
+            tempPerson = person[i]
+            tempCity = city[i]
+            tempDate = date[i]
+            tempCpf = cpf[i]
+            tempTel = tel[i]
 
-        aux = age[i]
-        age[i] = age[minimum]
-        age[minimum] = aux
-        #
-        aux = person[i]
-        person[i] = person[minimum]
-        person[minimum] = aux
-        #
-        aux = city[i]
-        city[i] = city[minimum]
-        city[minimum] = aux
-        #
-        aux = date[i]
-        date[i] = date[minimum]
-        date[minimum] = aux
-        #
-        aux = cpf[i]
-        cpf[i] = cpf[minimum]
-        cpf[minimum] = aux
-        #
-        aux = tel[i]
-        tel[i] = tel[minimum]
-        tel[minimum] = aux
+            j = i
+            while j >= int(gap) and age[j - int(gap)] > tempAge:
+                age[j] = age[j - int(gap)]
+                person[j] = person[j - int(gap)]
+                city[j] = city[j - int(gap)]
+                date[j] = date[j - int(gap)]
+                cpf[j] = cpf[j - int(gap)]
+                tel[j] = tel[j - int(gap)]
+                j -= int(gap)
+
+            age[j] = tempAge
+            person[j] = tempPerson
+            city[j] = tempCity
+            date[j] = tempDate
+            cpf[j] = tempCpf
+            tel[j] = tempTel
+        gap /= 2
+
         
 #Ordering by Name
 def bubble_sort():

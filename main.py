@@ -207,7 +207,7 @@ def openList():
 
 def clickedIdade():
 
-   selection_sort()
+   shellSort()
 
    ContatoPrin.config(state="normal")
    ContatoPrin.delete('1.0', END)
