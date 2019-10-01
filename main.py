@@ -312,9 +312,9 @@ def clickedIdade():
       ContatoPrin.insert(INSERT, cpf[j])
       ContatoPrin.insert(INSERT, "\n ")
 
-      ContatoPrin.insert(INSERT, "idade: ")
-      ContatoPrin.insert(INSERT, age[j])
-      ContatoPrin.insert(INSERT, "\n ") 
+      #ContatoPrin.insert(INSERT, "idade: ")
+      #ContatoPrin.insert(INSERT, age[j])
+      #ContatoPrin.insert(INSERT, "\n ") 
 
       ContatoPrin.insert(INSERT, "Cidade: ")
       ContatoPrin.insert(INSERT, city[j])
@@ -325,7 +325,7 @@ def clickedIdade():
       ContatoPrin.insert(INSERT, "\n ") 
 
       ContatoPrin.insert(INSERT, "Idade: ")
-      ContatoPrin.insert(INSERT, date[j])
+      ContatoPrin.insert(INSERT, age[j])
       ContatoPrin.insert(INSERT, "\n")
       j += 1
 
@@ -352,9 +352,9 @@ def clickedNome():
       ContatoPrin.insert(INSERT, cpf[j])
       ContatoPrin.insert(INSERT, "\n ")
 
-      ContatoPrin.insert(INSERT, "idade: ")
-      ContatoPrin.insert(INSERT, age[j])
-      ContatoPrin.insert(INSERT, "\n ") 
+      # ContatoPrin.insert(INSERT, "idade: ")
+      # ContatoPrin.insert(INSERT, age[j])
+      # ContatoPrin.insert(INSERT, "\n ") 
 
       ContatoPrin.insert(INSERT, "Cidade: ")
       ContatoPrin.insert(INSERT, city[j])
@@ -365,7 +365,7 @@ def clickedNome():
       ContatoPrin.insert(INSERT, "\n ") 
 
       ContatoPrin.insert(INSERT, "Idade: ")
-      ContatoPrin.insert(INSERT, date[j])
+      ContatoPrin.insert(INSERT, age[j])
       ContatoPrin.insert(INSERT, "\n")
       j += 1
 
@@ -393,9 +393,9 @@ def clickedCidade():
       ContatoPrin.insert(INSERT, cpf[j])
       ContatoPrin.insert(INSERT, "\n ")
 
-      ContatoPrin.insert(INSERT, "idade: ")
-      ContatoPrin.insert(INSERT, age[j])
-      ContatoPrin.insert(INSERT, "\n ") 
+      # ContatoPrin.insert(INSERT, "idade: ")
+      # ContatoPrin.insert(INSERT, age[j])
+      # ContatoPrin.insert(INSERT, "\n ") 
 
       ContatoPrin.insert(INSERT, "Cidade: ")
       ContatoPrin.insert(INSERT, city[j])
@@ -406,7 +406,7 @@ def clickedCidade():
       ContatoPrin.insert(INSERT, "\n ") 
 
       ContatoPrin.insert(INSERT, "Idade: ")
-      ContatoPrin.insert(INSERT, date[j])
+      ContatoPrin.insert(INSERT, age[j])
       ContatoPrin.insert(INSERT, "\n")
       j += 1
 
