@@ -10,7 +10,7 @@ def contatos_reader():
            # print(line[2])
         
 def contatos_writer(contatos):
-    with open('contatos2.csv', 'w') as new_file:
+    with open('contatos.csv', 'w') as new_file:
         csv_writer = csv.writer(new_file, delimiter=',') 
 
         for line in contatos:
