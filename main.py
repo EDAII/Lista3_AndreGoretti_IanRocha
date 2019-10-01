@@ -94,36 +94,39 @@ def abrirBusca():
       Nome = EntradaN.get()
       
       i = 0
-      while(i <= 50):
+      for line in contatosCSV:
+         
+         if line[0] == Nome:
             
-            if person[i] == Nome:
-               
-               ContatoBusca.insert(INSERT, "--------------------")
-               ContatoBusca.insert(INSERT, "\n ")
-               ContatoBusca.insert(INSERT, "Nome: ")
-               ContatoBusca.insert(INSERT, person[i])
-               ContatoBusca.insert(INSERT, "\n ")
+            print(line[0])
+            ContatoBusca.insert(INSERT, "--------------------") 
+            ContatoBusca.insert(INSERT, "\n ")      
+            ContatoBusca.insert(INSERT, "Nome: ")
+            ContatoBusca.insert(INSERT, line[0])
+            ContatoBusca.insert(INSERT, "\n ")
 
-               ContatoBusca.insert(INSERT, "CPF: ")
-               ContatoBusca.insert(INSERT, cpf[i])
-               ContatoBusca.insert(INSERT, "\n ")
+            ContatoBusca.insert(INSERT, "CPF: ")
+            ContatoBusca.insert(INSERT, line[2])
+            ContatoBusca.insert(INSERT, "\n ")
 
-               ContatoBusca.insert(INSERT, "idade: ")
-               ContatoBusca.insert(INSERT, age[i])
-               ContatoBusca.insert(INSERT, "\n ") 
+            #ContatoBusca.insert(INSERT, "idade: ")
+            #ContatoBusca.insert(INSERT, age[j])
+            #ContatoBusca.insert(INSERT, "\n ") 
 
-               ContatoBusca.insert(INSERT, "Cidade: ")
-               ContatoBusca.insert(INSERT, city[i])
-               ContatoBusca.insert(INSERT, "\n ") 
+            ContatoBusca.insert(INSERT, "Cidade: ")
+            ContatoBusca.insert(INSERT, line[1])
+            ContatoBusca.insert(INSERT, "\n ") 
 
-               ContatoBusca.insert(INSERT, "Numero Telefone: ")
-               ContatoBusca.insert(INSERT, tel[i])
-               ContatoBusca.insert(INSERT, "\n ") 
+            ContatoBusca.insert(INSERT, "Numero Telefone: ")
+            ContatoBusca.insert(INSERT, line[4])
+            ContatoBusca.insert(INSERT, "\n ") 
 
-               ContatoBusca.insert(INSERT, "Nascimento: ")
-               ContatoBusca.insert(INSERT, date[i])
-               ContatoBusca.insert(INSERT, "\n")
-            i += 1       
+            ContatoBusca.insert(INSERT, "Idade: ")
+            ContatoBusca.insert(INSERT, line[3])
+            ContatoBusca.insert(INSERT, "\n")
+            
+     
+      ContatoBusca.config(state="disabled")      
 
       ContatoBusca.config(state="disabled")                  
 
@@ -133,37 +136,40 @@ def abrirBusca():
 
       ContatoBusca.config(state="normal")
       ContatoBusca.delete('1.0', END)
-      AgeB = int(EntradaA.get())
+      AgeB = EntradaA.get()
       j = 0
-      while(j <= 50):
-            if age[j] == AgeB:
-               ContatoBusca.insert(INSERT, "--------------------")
-               ContatoBusca.insert(INSERT, "\n ")
-               ContatoBusca.insert(INSERT, "Nome: ")
-               ContatoBusca.insert(INSERT, person[j])
-               ContatoBusca.insert(INSERT, "\n ")
+      for line in contatosCSV:
+         
+         if line[3] == AgeB:
+            
+            
+            ContatoBusca.insert(INSERT, "--------------------") 
+            ContatoBusca.insert(INSERT, "\n ")      
+            ContatoBusca.insert(INSERT, "Nome: ")
+            ContatoBusca.insert(INSERT, line[0])
+            ContatoBusca.insert(INSERT, "\n ")
 
-               ContatoBusca.insert(INSERT, "CPF: ")
-               ContatoBusca.insert(INSERT, cpf[j])
-               ContatoBusca.insert(INSERT, "\n ")
+            ContatoBusca.insert(INSERT, "CPF: ")
+            ContatoBusca.insert(INSERT, line[2])
+            ContatoBusca.insert(INSERT, "\n ")
 
-               ContatoBusca.insert(INSERT, "idade: ")
-               ContatoBusca.insert(INSERT, age[j])
-               ContatoBusca.insert(INSERT, "\n ") 
+            #ContatoBusca.insert(INSERT, "idade: ")
+            #ContatoBusca.insert(INSERT, age[j])
+            #ContatoBusca.insert(INSERT, "\n ") 
 
-               ContatoBusca.insert(INSERT, "Cidade: ")
-               ContatoBusca.insert(INSERT, city[j])
-               ContatoBusca.insert(INSERT, "\n ") 
+            ContatoBusca.insert(INSERT, "Cidade: ")
+            ContatoBusca.insert(INSERT, line[1])
+            ContatoBusca.insert(INSERT, "\n ") 
 
-               ContatoBusca.insert(INSERT, "Numero Telefone: ")
-               ContatoBusca.insert(INSERT, tel[j])
-               ContatoBusca.insert(INSERT, "\n ") 
+            ContatoBusca.insert(INSERT, "Numero Telefone: ")
+            ContatoBusca.insert(INSERT, line[4])
+            ContatoBusca.insert(INSERT, "\n ") 
 
-               ContatoBusca.insert(INSERT, "Nascimento: ")
-               ContatoBusca.insert(INSERT, date[j])
-               ContatoBusca.insert(INSERT, "\n")
-            j += 1
-
+            ContatoBusca.insert(INSERT, "Idade: ")
+            ContatoBusca.insert(INSERT, line[3])
+            ContatoBusca.insert(INSERT, "\n")
+            
+     
       ContatoBusca.config(state="disabled")      
 
    def clickedC():
@@ -171,36 +177,37 @@ def abrirBusca():
       ContatoBusca.config(state="normal")
       ContatoBusca.delete('1.0', END)
       Cidade = EntradaC.get()
-      j = 0
+      
       for line in contatosCSV:
-         print(Cidade)
-         print(line[1])
+         
          if line[1] == Cidade:
-            ContatoPrin.insert(INSERT, "--------------------") 
-            ContatoPrin.insert(INSERT, "\n ")      
-            ContatoPrin.insert(INSERT, "Nome: ")
-            ContatoPrin.insert(INSERT, line[0])
-            ContatoPrin.insert(INSERT, "\n ")
+            
+            print(line[1])
+            ContatoBusca.insert(INSERT, "--------------------") 
+            ContatoBusca.insert(INSERT, "\n ")      
+            ContatoBusca.insert(INSERT, "Nome: ")
+            ContatoBusca.insert(INSERT, line[0])
+            ContatoBusca.insert(INSERT, "\n ")
 
-            ContatoPrin.insert(INSERT, "CPF: ")
-            ContatoPrin.insert(INSERT, line[2])
-            ContatoPrin.insert(INSERT, "\n ")
+            ContatoBusca.insert(INSERT, "CPF: ")
+            ContatoBusca.insert(INSERT, line[2])
+            ContatoBusca.insert(INSERT, "\n ")
 
-            #ContatoPrin.insert(INSERT, "idade: ")
-            #ContatoPrin.insert(INSERT, age[j])
-            #ContatoPrin.insert(INSERT, "\n ") 
+            #ContatoBusca.insert(INSERT, "idade: ")
+            #ContatoBusca.insert(INSERT, age[j])
+            #ContatoBusca.insert(INSERT, "\n ") 
 
-            ContatoPrin.insert(INSERT, "Cidade: ")
-            ContatoPrin.insert(INSERT, line[1])
-            ContatoPrin.insert(INSERT, "\n ") 
+            ContatoBusca.insert(INSERT, "Cidade: ")
+            ContatoBusca.insert(INSERT, line[1])
+            ContatoBusca.insert(INSERT, "\n ") 
 
-            ContatoPrin.insert(INSERT, "Numero Telefone: ")
-            ContatoPrin.insert(INSERT, line[4])
-            ContatoPrin.insert(INSERT, "\n ") 
+            ContatoBusca.insert(INSERT, "Numero Telefone: ")
+            ContatoBusca.insert(INSERT, line[4])
+            ContatoBusca.insert(INSERT, "\n ") 
 
-            ContatoPrin.insert(INSERT, "Nascimento: ")
-            ContatoPrin.insert(INSERT, line[3])
-            ContatoPrin.insert(INSERT, "\n")
+            ContatoBusca.insert(INSERT, "Idade: ")
+            ContatoBusca.insert(INSERT, line[3])
+            ContatoBusca.insert(INSERT, "\n")
             
      
       ContatoBusca.config(state="disabled")
@@ -247,8 +254,8 @@ def abrirBusca():
 
 def openList():
 
-   ContatoPrin.delete('1.0', END)
    ContatoPrin.config(state="normal")
+   ContatoPrin.delete('1.0', END)
 
    
    j = 0
@@ -276,7 +283,7 @@ def openList():
       ContatoPrin.insert(INSERT, line[4])
       ContatoPrin.insert(INSERT, "\n ") 
 
-      ContatoPrin.insert(INSERT, "Nascimento: ")
+      ContatoPrin.insert(INSERT, "Idade: ")
       ContatoPrin.insert(INSERT, line[3])
       ContatoPrin.insert(INSERT, "\n")
       j += 1
@@ -317,7 +324,7 @@ def clickedIdade():
       ContatoPrin.insert(INSERT, tel[j])
       ContatoPrin.insert(INSERT, "\n ") 
 
-      ContatoPrin.insert(INSERT, "Nascimento: ")
+      ContatoPrin.insert(INSERT, "Idade: ")
       ContatoPrin.insert(INSERT, date[j])
       ContatoPrin.insert(INSERT, "\n")
       j += 1
@@ -357,7 +364,7 @@ def clickedNome():
       ContatoPrin.insert(INSERT, tel[j])
       ContatoPrin.insert(INSERT, "\n ") 
 
-      ContatoPrin.insert(INSERT, "Nascimento: ")
+      ContatoPrin.insert(INSERT, "Idade: ")
       ContatoPrin.insert(INSERT, date[j])
       ContatoPrin.insert(INSERT, "\n")
       j += 1
@@ -398,7 +405,7 @@ def clickedCidade():
       ContatoPrin.insert(INSERT, tel[j])
       ContatoPrin.insert(INSERT, "\n ") 
 
-      ContatoPrin.insert(INSERT, "Nascimento: ")
+      ContatoPrin.insert(INSERT, "Idade: ")
       ContatoPrin.insert(INSERT, date[j])
       ContatoPrin.insert(INSERT, "\n")
       j += 1
