@@ -6,6 +6,84 @@ from tkinter import ttk
 # s.theme_use('clam')
 
 
+
+def abrirAdic():
+   
+   def inserir():
+      temp = [InserirN.get(),InserirCidade.get(), InserirCPF.get(), InserirData.get(), InserirTelefone.get() ]
+      contatosCSV.append(temp)
+      openList()
+      janelaAdic.destroy()
+
+   janelaAdic = Toplevel()
+   janelaAdic.geometry('480x550')
+
+   InserirN = ttk.Entry(janelaAdic,width=45)
+   InserirN.place(x = 100, y = 15)
+
+   InserirCPF = ttk.Entry(janelaAdic,width=45)
+   InserirCPF.place(x = 100, y = 65)
+
+   InserirCidade = ttk.Entry(janelaAdic,width=45)
+   InserirCidade.place(x = 100, y = 115)
+
+   InserirData = ttk.Entry(janelaAdic,width=45)
+   InserirData.place(x = 100, y = 165)
+
+   InserirTelefone = ttk.Entry(janelaAdic,width=45)
+   InserirTelefone.place(x = 100, y = 215)
+
+   lblN = ttk.Label(janelaAdic, text="Nome")
+   lblN.place(x = 30, y = 15)
+
+   lblCPF = ttk.Label(janelaAdic, text="CPF")
+   lblCPF.place(x = 30, y = 65)
+
+   lblCidade = ttk.Label(janelaAdic, text="Cidade")
+   lblCidade.place(x = 30, y = 115)
+
+   lblData = ttk.Label(janelaAdic, text="Data.N")
+   lblData.place(x = 30, y = 165)
+
+   lblTelefone = ttk.Label(janelaAdic, text="Telef.")
+   lblTelefone.place(x = 30, y = 215)
+
+   lblN = ttk.Label(janelaAdic, text="Nome")
+   lblN.place(x = 30, y = 15)
+
+   btnCloseAdic = ttk.Button(janelaAdic, text="Fechar", command=janelaAdic.destroy)
+   btnCloseAdic.place(x = 100, y = 300)
+
+   btnCloseAdic = ttk.Button(janelaAdic, text="Inserir", command=inserir)
+   btnCloseAdic.place(x = 300, y = 300)
+
+def abrirDelet():
+
+   def deletar():
+      nome = InserirN.get()
+      
+      for line in contatosCSV:
+         if line[0] == nome:
+            contatosCSV.remove(line)
+            
+      openList()
+      janelaDelet.destroy()
+
+   janelaDelet = Toplevel()
+   janelaDelet.geometry('480x200')
+
+   InserirN = ttk.Entry(janelaDelet,width=45)
+   InserirN.place(x = 100, y = 15)
+
+   lblN = ttk.Label(janelaDelet, text="Nome")
+   lblN.place(x = 30, y = 15)
+
+   btnCloseAdic = ttk.Button(janelaDelet, text="Fechar", command=janelaDelet.destroy)
+   btnCloseAdic.place(x = 100, y = 100)
+
+   btnCloseAdic = ttk.Button(janelaDelet, text="Deletar", command=deletar)
+   btnCloseAdic.place(x = 300, y = 100)
+
  
 def abrirBusca():
 
@@ -94,35 +172,36 @@ def abrirBusca():
       ContatoBusca.delete('1.0', END)
       Cidade = EntradaC.get()
       j = 0
-      while(j <= 50):
+      for line in contatosCSV:
+         print(Cidade)
+         print(line[1])
+         if line[1] == Cidade:
+            ContatoPrin.insert(INSERT, "--------------------") 
+            ContatoPrin.insert(INSERT, "\n ")      
+            ContatoPrin.insert(INSERT, "Nome: ")
+            ContatoPrin.insert(INSERT, line[0])
+            ContatoPrin.insert(INSERT, "\n ")
+
+            ContatoPrin.insert(INSERT, "CPF: ")
+            ContatoPrin.insert(INSERT, line[2])
+            ContatoPrin.insert(INSERT, "\n ")
+
+            #ContatoPrin.insert(INSERT, "idade: ")
+            #ContatoPrin.insert(INSERT, age[j])
+            #ContatoPrin.insert(INSERT, "\n ") 
+
+            ContatoPrin.insert(INSERT, "Cidade: ")
+            ContatoPrin.insert(INSERT, line[1])
+            ContatoPrin.insert(INSERT, "\n ") 
+
+            ContatoPrin.insert(INSERT, "Numero Telefone: ")
+            ContatoPrin.insert(INSERT, line[4])
+            ContatoPrin.insert(INSERT, "\n ") 
+
+            ContatoPrin.insert(INSERT, "Nascimento: ")
+            ContatoPrin.insert(INSERT, line[3])
+            ContatoPrin.insert(INSERT, "\n")
             
-            if Cidade == city[j]:
-               ContatoBusca.insert(INSERT, "--------------------")
-               ContatoBusca.insert(INSERT, "\n ")
-               ContatoBusca.insert(INSERT, "Nome: ")
-               ContatoBusca.insert(INSERT, person[j])
-               ContatoBusca.insert(INSERT, "\n ")
-
-               ContatoBusca.insert(INSERT, "CPF: ")
-               ContatoBusca.insert(INSERT, cpf[j])
-               ContatoBusca.insert(INSERT, "\n ")
-
-               ContatoBusca.insert(INSERT, "idade: ")
-               ContatoBusca.insert(INSERT, age[j])
-               ContatoBusca.insert(INSERT, "\n ") 
-
-               ContatoBusca.insert(INSERT, "Cidade: ")
-               ContatoBusca.insert(INSERT, city[j])
-               ContatoBusca.insert(INSERT, "\n ") 
-
-               ContatoBusca.insert(INSERT, "Numero Telefone: ")
-               ContatoBusca.insert(INSERT, tel[j])
-               ContatoBusca.insert(INSERT, "\n ") 
-
-               ContatoBusca.insert(INSERT, "Nascimento: ")
-               ContatoBusca.insert(INSERT, date[j])
-               ContatoBusca.insert(INSERT, "\n")
-            j += 1   
      
       ContatoBusca.config(state="disabled")
 
@@ -348,6 +427,11 @@ ContatoPrin.config(state="disabled")
 
 openList()
 
+btnAdicionar = ttk.Button(window1, text="Adicionar", command=abrirAdic)
+btnAdicionar.place(x = 78, y = 50)
+
+btnDeletar = ttk.Button(window1, text="Deletar", command=abrirDelet)
+btnDeletar.place(x = 78, y = 80)
 
 btnBusca = ttk.Button(window1, text="Buscas", command=abrirBusca)
 btnBusca.place(relx = 0.25, rely = 0.3, anchor = CENTER)
