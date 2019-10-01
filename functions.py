@@ -78,66 +78,38 @@ for k in range(51):
     city.append(random_city())
 
 #Ordering by age
-def bucketSort():
-    code = hashing()
-    buckets = [list() for _ in range(code[1])]
+def shellSortAge():
+    n = len(age)
+    gap = n / 2
+    while int(gap) > 0:
+        for i in range(int(gap),n):
+            tempAge = age[i]
+            tempPerson = person[i]
+            tempCity = city[i]
+            tempDate = date[i]
+            tempCpf = cpf[i]
+            tempTel = tel[i]
 
-    for i in age:
-        x = re_hashing(i, code)
-        buck = buckets[x]
-        buck.append(i)
+            j = i
+            while j >= int(gap) and age[j - int(gap)] > tempAge:
+                age[j] = age[j - int(gap)]
+                person[j] = person[j - int(gap)]
+                city[j] = city[j - int(gap)]
+                date[j] = date[j - int(gap)]
+                cpf[j] = cpf[j - int(gap)]
+                tel[j] = tel[j - int(gap)]
+                j -= int(gap)
 
-    for bucket in buckets:
-        insertion_sort(bucket)
-
-    ndx = 0
-    for b in range(len(buckets)):
-        for v in buckets[b]:
-            age[ndx] = v
-            ndx += 1
-
-def hashing():
-    m = age[0]
-    for i in range(1, len(age)):
-        if(m < age[i]):
-            m = age[i]
-    result = [m, int(math.sqrt(len(age)))]
-    
-    return result
-
-def re_hashing(i, code):
-    return int(i / code[0] * (code[1] - 1))
-
-    
-def insertion_sort(b):
-    for i in range (1, len(b)):
-        upAge = b[i]
-        upPerson = person[i]
-        upCity = city[i]
-        upDate = date[i]
-        upCpf = cpf[i]
-        upTel = tel[i]
-        j = i - 1
-
-        while j >= 0 and b[j] > upAge:
-            b[j + 1] = b[j]
-            person[j + 1] = person[j]
-            date[j + 1] = date[j]
-            cpf[j + 1] = cpf[j]
-            tel[j + 1] = tel[j]
-            city[j + 1] = city[j]
-            j -= 1
-
-        b[j + 1] = upAge
-        person[j + 1] = upPerson
-        date[j + 1] = upDate
-        cpf[j + 1] = upCpf
-        tel[j + 1] = upTel
-        city[j + 1] = upCity
-
+            age[j] = tempAge
+            person[j] = tempPerson
+            city[j] = tempCity
+            date[j] = tempDate
+            cpf[j] = tempCpf
+            tel[j] = tempTel
+        gap /= 2
         
 #Ordering by Name
-def shellSort():
+def shellSortName():
     n = len(person)
     gap = n / 2
     while int(gap) > 0:
